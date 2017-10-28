@@ -5,8 +5,6 @@ local f = gbl.FireHack
 local g = gbl.gapis
 
 function f.Load()
-	g.ObjectCreator = _G.GetObjectFieldAccessor(0x30, _G.Type.GUID)
-	g.GameObjectIsAnimating = _G.GetObjectFieldAccessor(0x1C4, _G.Type.Bool)
 	-- FireHack b27 breaks InCombatLockdown, lets fix it
 	_G.InCombatLockdown = function() return g.UnitAffectingCombat("player") end
 end
@@ -57,11 +55,11 @@ function f.UnitCombatRange(a, b)
 end
 
 function f.ObjectCreator(a)
-	return g.ObjectIsVisible(a) and g.ObjectCreator(a)
+	return g.ObjectIsVisible(a) and g.GetObjectFieldAccessor(0x30, g.Type.GUID)(a)
 end
 
 function f.GameObjectIsAnimating(a)
-	return g.ObjectIsVisible(a) and g.GameObjectIsAnimating(a)
+	return g.ObjectIsVisible(a) and g.GetObjectFieldAccessor(0x1C4, g.Type.Bool)(a)
 end
 
 function f.LineOfSight(a, b)
