@@ -5,7 +5,7 @@ local f = gbl.FireHack
 local g = gbl.gapis
 
 function f.Load()
-	g.ObjectCreator = _G.GetObjectDescriptorAccessor("CGUnitData::createdBy", _G.Type.GUID)
+	g.ObjectCreator = _G.GetObjectFieldAccessor(0x30, _G.Type.GUID)
 	g.GameObjectIsAnimating = _G.GetObjectFieldAccessor(0x1C4, _G.Type.Bool)
 	-- FireHack b27 breaks InCombatLockdown, lets fix it
 	_G.InCombatLockdown = function() return g.UnitAffectingCombat("player") end
