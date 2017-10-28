@@ -81,11 +81,16 @@ function f.LineOfSight(a, b)
 	return not g.TraceLine(ax, ay, az+2.25, bx, by, bz+2.25, g.bit.bor(0x10, 0x100))
 end
 
-function f.OM_Maker()
-	for i=1, g.GetObjectCount() do
-		local Obj = g.GetObjectWithIndex(i)
-		NeP.OM:Add(Obj, g.ObjectIsType(Obj, g.ObjectTypes.GameObject))
-	end
+function f.GetObjectCount()
+	return g.GetObjectCount()
+end
+
+function f.GetObjectWithIndex(i)
+	return g.GetObjectWithIndex(i)
+end
+
+function f.IsGameObject(Obj)
+	return g.ObjectIsType(Obj, g.ObjectTypes.GameObject)
 end
 
 gbl:AddUnlocker('FireHack', {
