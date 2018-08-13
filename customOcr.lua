@@ -3,7 +3,7 @@ local _G = _G
 local NeP = _G.NeP
 gbl.CustomOcr = {}
 
-local pxFrame = CreateFrame("Frame", "pxFrame", _G.UIParent)
+local pxFrame = CreateFrame("Frame", "pxFrame", NePFaceroolFrame)
 pxFrame:SetWidth(10)
 pxFrame:SetHeight(10)
 pxFrame:ClearAllPoints()
