@@ -3,12 +3,12 @@ local _G = _G
 local NeP = _G.NeP
 gbl.CustomOcr = {}
 
-local pixelFrame = CreateFrame("Frame", "PXBFrame", _G.UIParent)
-pixelFrame:SetWidth(10)
-pixelFrame:SetHeight(10)
-pixelFrame:ClearAllPoints()
-pixelFrame:SetPoint("TOPLEFT", 0, 0);
-pixelFrame:Show()
+local pxFrame = CreateFrame("Frame", "pxFrame", _G.UIParent)
+pxFrame:SetWidth(10)
+pxFrame:SetHeight(10)
+pxFrame:ClearAllPoints()
+pxFrame:SetPoint("TOPLEFT", 0, 0);
+pxFrame:Show()
 
 local function GetSpellColor (spellId)
   strspellId = format("%06d", spellId)
@@ -16,23 +16,24 @@ local function GetSpellColor (spellId)
   local g = "." .. string.sub(strspellId, 3, 4)
   local b = "." .. string.sub(strspellId, 5, 6)
 
-  print("color", r, g, b)
+  -- print("color", r, g, b)
   return r, g, b
 end
 
 local function ChangeColor (spellId)
+  -- print("spellId", eva[1].id)
   if spellId ~= nil then
     r, g, b = GetSpellColor(spellId)
 
-    if not pixelFrame.BG then
-      pixelFrame.BG = pixelFrame:CreateTexture("BACKGROUND")
-      pixelFrame.BG:SetAllPoints(pixelFrame)
-      if not pixelFrame:IsVisible() then
-        pixelFrame:Show()
+    if not pxFrame.BG then
+      pxFrame.BG = pxFrame:CreateTexture("BACKGROUND")
+      pxFrame.BG:SetAllPoints(pxFrame)
+      if not pxFrame:IsVisible() then
+        pxFrame:Show()
       end
     end
 
-    pixelFrame.BG:SetColorTexture(r, g, b)
+    pxFrame.BG:SetColorTexture(r, g, b)
   end
 end
 
@@ -41,10 +42,7 @@ local cast = NeP.Protected.Cast
 
 gbl.CustomOcr.Cast = function(...)
   local _,_, eva = ...
-
-  -- print("spellId", eva[1].id)
   ChangeColor(eva[1].id)
-
   cast(...)
 end
 
