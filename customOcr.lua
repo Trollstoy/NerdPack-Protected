@@ -52,3 +52,12 @@ gbl:AddUnlocker("CustomOcr", {
   test = function() return _G.CustomOcr end,
   functions = gbl.CustomOcr,
 })
+
+
+-- TODO : figure out how to hook onto Faceroll.Hide to black our frame out
+-- local hide = NeP.Faceroll.Hide
+--
+-- NeP.Faceroll.Hide = function(...)
+--   pxFrame:Hide()
+--   hide(...)
+-- end
