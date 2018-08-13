@@ -48,7 +48,7 @@ gbl.PXB.Cast = function(...)
 end
 
 -- Turned off by default
-_G.PXB = false
+_G.PXB = true
 
 gbl:AddUnlocker("PXB", {
   test = function() return _G.PXB end,
